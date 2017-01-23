@@ -6,23 +6,45 @@ class Api::TodoListsController < ApplicationController
     
     def show
         list = TodoList.find(params[:id])
-        render json: list
+        render json: list.as_json(include: :todo_items)
+    end
+    
+    def update
+        list = TodoList.find(params[:id])
+        if list.update(list_params)
+            render status: 200, json: {
+                message: "Successfully updated the To-do List",
+                todo_list: list
+            }.to_json
+        else
+            render status: 422, json: {
+                message: "List cannot be updated",
+                todo_list: list
+            }.to_json
+        end
     end
     
     def create
         list = TodoList.new(list_params)
         if list.save
-            render json: {
-                status: 200,
+            render status: 200, json: {
                 message: "Successfully created To-do List.",
                 todo_list: list
             }.to_json
         else
-            render json: {
-                status: 500,
+            render status: 422, json: {
                 errors: list.errors
             }.to_json
         end
+    end
+    
+    def destroy
+        list = TodoList.find(params[:id])
+        list.destroy
+        render status: 200, json: {
+            message: "Successfully deleted the To-do List.",
+            todo_list: list
+        }.to_json
     end
     
     private
