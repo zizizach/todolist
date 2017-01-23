@@ -1,3 +1,4 @@
+curl https://todolist-zizizach.c9users.io/api/todo_lists/2
 curl -i -H "Accept: application/json" -H "Content-type: application/json" -X POST -d '{"title": "This is the title"}' https://todolist-zizizach.c9users.io/api/todo_lists/
 curl -i -H "Accept: application/json" -H "Content-type: application/json" -X POST -d '{"title": "This is the title 2"}' https://todolist-zizizach.c9users.io/api/todo_lists/
 curl -i -H "Accept: application/json" -H "Content-type: application/json" -X PUT -d "{\"title\":\"updated title.\"}" https://todolist-zizizach.c9users.io/api/todo_lists/8.json
@@ -5,3 +6,6 @@ curl -i -H "Accept: application/json" -H "Content-type: application/json" -X PUT
 curl -i -H "Accept: application/json" -H "Content-type: application/json" -X POST -d '{"content": "todo item1"}' https://todolist-zizizach.c9users.io/api/todo_lists/8/todo_items
 curl -H "Accept: application/json" -H "Content-type: application/json" -X DELETE https://todolist-zizizach.c9users.io/api/todo_lists/8/todo_items/34.json
 curl -H "Accept: application/json" -H "Content-type: application/json" -X PUT -d '{"content":"Hello world."}' https://todolist-zizizach.c9users.io/api/todo_lists/8/todo_items/33.json
+
+# authenticate_or_request_with_http_basic
+curl -u Zach:Simba https://todolist-zizizach.c9users.io/api/todo_lists/2
